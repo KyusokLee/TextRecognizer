@@ -37,9 +37,9 @@ private extension RecognizeResultViewController {
     }
     
     func setUpNavigationBar(from imageData: Data) {
-        navigationItem.title = "簡易プロフィール画面"
+        navigationItem.title = "テキスト認証の結果画面"
         let textAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.white
+            NSAttributedString.Key.foregroundColor: UIColor.black
         ]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
