@@ -50,20 +50,20 @@ private extension RecognizeResultViewController {
     }
 }
 
-// MARK: - ProfileView
+// MARK: - TextRecognizeResultView
 extension RecognizeResultViewController: TextRecognizeResultView {
-    func shouldShowTextRecognizeResult() {
-        let unrecognizedMessage = "読み取れませんでした"
+    func shouldShowTextRecognizeResult(with results: [String]) {
         // textViewに反映させる
-        resultTextView.text = 
+        let joinedString = results.joined(separator: "\n")
+        resultTextView.text = joinedString
     }
     
     func shouldShowNetworkErrorFeedback() {
-        <#code#>
+        let networkErrorMessage = "ネットワークエラー"
     }
     
     func shouldShowRecognitionFailFeedback() {
-        <#code#>
+        let recognitionFailMessage = "テキスト認証に失敗しました"
     }
     
     

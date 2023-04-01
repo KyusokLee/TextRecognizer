@@ -132,13 +132,13 @@ private extension CameraViewController {
 extension CameraViewController: AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         guard let imageData = photo.fileDataRepresentation() else { return }
-        
         // TODO: - Vision Frameworkでは、CIImageやCGImageを用いるので、ここで、写真のデータ形式の変換をしておく
         // しかし、CGImageのメソッドにはデータ形式を画像データに変換するものがないので、CIImageを採択
         let ciImage = CIImage(data: imageData)
-
+        // ViewControllerでimageを表示したり、加工するロジックがないので、instantiateには他のパラメータは与えない
         let resultViewController = RecognizeResultViewController.instantiate()
-        resultViewController.presenter.loadTextResult(from: ciImage)
+        // resultViewControllerのpresenterで撮影したimageを元に、テキスト認証結果を表示するので、責務を行うpresenterのメソッドにCIImageを与える
+        resultViewController.presenter.loadTextResult(from: ciImage ?? CIImage())
         let backButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButtonItem
         navigationController?.navigationBar.tintColor = UIColor.white

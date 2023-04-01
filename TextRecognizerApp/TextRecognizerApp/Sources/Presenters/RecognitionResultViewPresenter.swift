@@ -10,7 +10,7 @@ import UIKit
 
 // インタフェースの定義
 protocol TextRecognizeResultView: AnyObject {
-    func shouldShowTextRecognizeResult(with ciImage: CIImage)
+    func shouldShowTextRecognizeResult(with results: [String])
     func shouldShowNetworkErrorFeedback()
     func shouldShowRecognitionFailFeedback()
 }
@@ -31,12 +31,13 @@ final class RecognitionResultViewPresenter {
         textRecognizer.recognize(ciImage: image, completion: { (results, error) in
             guard error == nil else {
                 self.view?.shouldShowNetworkErrorFeedback()
+                return
             }
             
             if results.isEmpty {
                 self.view?.shouldShowRecognitionFailFeedback()
             } else {
-                self.view?.shouldShowTextRecognizeResult(with: image)
+                self.view?.shouldShowTextRecognizeResult(with: results)
             }
             
         })

@@ -10,11 +10,18 @@ import UIKit
 import Vision
 
 struct VisionTextRecognizer: VisionTextRecognizerProtocol {
+//    let textRecognitionQueue: DispatchQueue
+//
+//    // 途中の段階
+//    // Queueの導入のためのinitializer
+//    init(textRecognitionQueue: DispatchQueue) {
+//        self.textRecognitionQueue = textRecognitionQueue
+//    }
+    
    // MARK: - Vision Frameworkでテキスト認証
     func recognize(ciImage: CIImage, completion: @escaping (([String], Error?) -> Void)) {
         // テキスト認証結果を格納するString型配列
         var texts: [String] = []
-        let textRecognitionQueue: DispatchQueue
         var request = setUpRecognizeTextRequest()
         
         request = VNRecognizeTextRequest { (request, error) in
@@ -35,7 +42,9 @@ struct VisionTextRecognizer: VisionTextRecognizerProtocol {
             completion(texts, nil)
         }
         
-        textRecognitionQueue.async {
+        // ここで、imageの処理を進める感じ
+        // 画像に対しての解析リクエストを処理するためのオブジェクト
+        DispatchQueue.main.async {
             let requestHandler = VNImageRequestHandler(ciImage: ciImage)
             try? requestHandler.perform([request])
         }
