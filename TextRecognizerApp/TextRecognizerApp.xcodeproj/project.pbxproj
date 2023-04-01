@@ -21,6 +21,8 @@
 		9437528429D6E7FF00213CDE /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9437528329D6E7FF00213CDE /* CameraViewController.swift */; };
 		9437528629D6F95400213CDE /* RecognizeResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9437528529D6F95400213CDE /* RecognizeResultViewController.swift */; };
 		9437528829D6F96400213CDE /* RecognizeResultView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9437528729D6F96400213CDE /* RecognizeResultView.storyboard */; };
+		94EC8BD129D819D900A5ACDD /* VisionTextRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EC8BD029D819D900A5ACDD /* VisionTextRecognizer.swift */; };
+		94EC8BD429D8213E00A5ACDD /* RecognitionResultViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EC8BD329D8213E00A5ACDD /* RecognitionResultViewPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		9437528329D6E7FF00213CDE /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		9437528529D6F95400213CDE /* RecognizeResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizeResultViewController.swift; sourceTree = "<group>"; };
 		9437528729D6F96400213CDE /* RecognizeResultView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecognizeResultView.storyboard; sourceTree = "<group>"; };
+		94EC8BD029D819D900A5ACDD /* VisionTextRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionTextRecognizer.swift; sourceTree = "<group>"; };
+		94EC8BD329D8213E00A5ACDD /* RecognitionResultViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionResultViewPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +139,8 @@
 		9437527A29D6E5ED00213CDE /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				94EC8BD229D8212300A5ACDD /* Presenters */,
+				94EC8BCF29D819C800A5ACDD /* Models */,
 				9437527C29D6E5FA00213CDE /* Apps */,
 				9437527E29D6E60700213CDE /* Storyboards */,
 				9437527D29D6E60100213CDE /* Controllers */,
@@ -180,6 +186,22 @@
 				9437528729D6F96400213CDE /* RecognizeResultView.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		94EC8BCF29D819C800A5ACDD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				94EC8BD029D819D900A5ACDD /* VisionTextRecognizer.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		94EC8BD229D8212300A5ACDD /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				94EC8BD329D8213E00A5ACDD /* RecognitionResultViewPresenter.swift */,
+			);
+			path = Presenters;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,10 +339,12 @@
 			files = (
 				9437528629D6F95400213CDE /* RecognizeResultViewController.swift in Sources */,
 				9437525229D6E5E400213CDE /* TextRecognizerApp.xcdatamodeld in Sources */,
+				94EC8BD429D8213E00A5ACDD /* RecognitionResultViewPresenter.swift in Sources */,
 				9437528429D6E7FF00213CDE /* CameraViewController.swift in Sources */,
 				9437524C29D6E5E400213CDE /* ViewController.swift in Sources */,
 				9437524829D6E5E400213CDE /* AppDelegate.swift in Sources */,
 				9437524A29D6E5E400213CDE /* SceneDelegate.swift in Sources */,
+				94EC8BD129D819D900A5ACDD /* VisionTextRecognizer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
