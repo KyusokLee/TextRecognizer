@@ -6,20 +6,21 @@
 //
 
 import Foundation
+import UIKit
 import Vision
 
 struct VisionTextRecognizer: VisionTextRecognizerProtocol {
-    // MARK: - Vision Frameworkでテキスト認証
-    func recognize(cgImage: CGImage, completion: @escaping([String]) -> Void) {
+   // MARK: - Vision Frameworkでテキスト認証
+    func recognize(ciImage: CIImage, completion: @escaping (([String], Error?) -> Void)) {
         // テキスト認証結果を格納するString型配列
         var texts: [String] = []
-//        let textRecognitionQueue: DispatchQueue
+        let textRecognitionQueue: DispatchQueue
         var request = setUpRecognizeTextRequest()
         
         request = VNRecognizeTextRequest { (request, error) in
             guard let observations = request.results as? [VNRecognizedTextObservation], error == nil else {
                 print("The observations you tried are of unexpected types.")
-                completion([])
+                completion([], error)
                 return
             }
             
@@ -31,11 +32,13 @@ struct VisionTextRecognizer: VisionTextRecognizerProtocol {
                 }
                 texts.append(candidates.string)
             }
-            completion(texts)
+            completion(texts, nil)
         }
-
-        let handler = VNImageRequestHandler(cgImage: cgImage)
-        try? handler.perform([request])
+        
+        textRecognitionQueue.async {
+            let requestHandler = VNImageRequestHandler(ciImage: ciImage)
+            try? requestHandler.perform([request])
+        }
     }
 }
 
@@ -52,5 +55,5 @@ private extension VisionTextRecognizer {
 }
 
 protocol VisionTextRecognizerProtocol {
-    func recognize(cgImage: CGImage, completion: @escaping([String]) -> Void)
+    func recognize(ciImage: CIImage, completion: @escaping(([String], Error?) -> Void))
 }

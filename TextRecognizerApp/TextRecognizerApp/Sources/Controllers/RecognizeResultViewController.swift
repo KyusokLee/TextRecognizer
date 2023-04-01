@@ -10,14 +10,15 @@ import UIKit
 final class RecognizeResultViewController: UIViewController {
     
     @IBOutlet weak var resultTextView: UITextView!
+    private(set) var presenter: RecognitionResultViewPresenter!
     
-    static func instantiate(with imageData: Data) -> RecognizeResultViewController {
+    static func instantiate() -> RecognizeResultViewController {
         guard let controller = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "RecognizeResultViewController") as? RecognizeResultViewController else {
             fatalError("RecognizeResultViewController could not be found")
         }
         
         controller.loadViewIfNeeded()
-        controller.configure(with: imageData)
+        controller.configure()
         return controller
     }
     
@@ -32,15 +33,38 @@ final class RecognizeResultViewController: UIViewController {
 }
 
 private extension RecognizeResultViewController {
-    func configure(with imageData: Data) {
-        setUpNavigationBar(from: imageData)
+    func configure() {
+        presenter = RecognitionResultViewPresenter(
+            textRecognizer: VisionTextRecognizer(),
+            view: self
+        )
+        setUpNavigationBar()
     }
     
-    func setUpNavigationBar(from imageData: Data) {
+    func setUpNavigationBar() {
         navigationItem.title = "テキスト認証の結果画面"
         let textAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor.black
         ]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
+}
+
+// MARK: - ProfileView
+extension RecognizeResultViewController: TextRecognizeResultView {
+    func shouldShowTextRecognizeResult() {
+        let unrecognizedMessage = "読み取れませんでした"
+        // textViewに反映させる
+        resultTextView.text = 
+    }
+    
+    func shouldShowNetworkErrorFeedback() {
+        <#code#>
+    }
+    
+    func shouldShowRecognitionFailFeedback() {
+        <#code#>
+    }
+    
+    
 }
