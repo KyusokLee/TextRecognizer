@@ -17,10 +17,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rde-Yi-7Q6">
-                                <rect key="frame" x="78.666666666666671" y="209" width="235.66666666666663" height="400"/>
+                                <rect key="frame" x="29.333333333333343" y="209" width="334.33333333333326" height="550"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="NWb-cP-Bgv"/>
+                                    <constraint firstAttribute="height" constant="550" id="NWb-cP-Bgv"/>
                                 </constraints>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
@@ -32,7 +32,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="rde-Yi-7Q6" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="hMg-my-2bV"/>
-                            <constraint firstItem="rde-Yi-7Q6" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.6" id="j2d-rU-3Py"/>
+                            <constraint firstItem="rde-Yi-7Q6" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.85" id="j2d-rU-3Py"/>
                             <constraint firstItem="rde-Yi-7Q6" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="150" id="vWS-dX-4l2"/>
                         </constraints>
                     </view>

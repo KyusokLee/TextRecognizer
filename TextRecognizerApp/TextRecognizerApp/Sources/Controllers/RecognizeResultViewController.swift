@@ -38,7 +38,12 @@ private extension RecognizeResultViewController {
             textRecognizer: VisionTextRecognizer(),
             view: self
         )
+        setUpScreen()
         setUpNavigationBar()
+    }
+    
+    func setUpScreen() {
+        resultTextView.backgroundColor = UIColor.systemGreen.withAlphaComponent(0.3)
     }
     
     func setUpNavigationBar() {

@@ -78,22 +78,23 @@ private extension CameraViewController {
     }
     
     func setUpDismissButton() {
-        let image = UIImage(systemName: "multiply")?.withRenderingMode(.alwaysOriginal)
+        let color = UIColor.systemGray.withAlphaComponent(0.7)
+        let image = UIImage(systemName: "multiply")?.withTintColor(color, renderingMode: .alwaysOriginal)
         guard let image = image else { return }
         dismissButton.setImage(image, for: .normal)
-        dismissButton.tintColor = UIColor.systemGray5
         //Buttonの設定したconstraintsより、imageが小さくなった場合、Buttonをsizeの大きさに合わせる方法
         dismissButton.contentVerticalAlignment = .fill
         dismissButton.contentHorizontalAlignment = .fill
     }
     
     func setUpShootButton() {
+        let color = UIColor.systemBlue.withAlphaComponent(0.8)
         let image = UIImage(systemName: "camera.circle.fill")?.withRenderingMode(.alwaysOriginal)
         guard let image = image else { return }
         shootButton.setImage(image, for: .normal)
         shootButton.contentVerticalAlignment = .fill
         shootButton.contentHorizontalAlignment = .fill
-        shootButton.tintColor = UIColor.systemBlue.withAlphaComponent(0.8)
+        shootButton.tintColor = color
     }
     
     func startCapture() {
@@ -152,7 +153,7 @@ extension CameraViewController: AVCapturePhotoCaptureDelegate {
         resultViewController.presenter.loadTextResult(from: ciImage ?? CIImage())
         let backButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButtonItem
-        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.tintColor = UIColor.black
         navigationController?.pushViewController(resultViewController, animated: true)
     }
 }
