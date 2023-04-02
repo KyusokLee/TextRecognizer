@@ -54,7 +54,7 @@ struct VisionTextRecognizer: VisionTextRecognizerProtocol {
 private extension VisionTextRecognizer {
     // Requestの詳細設定
     func setUpRecognizeTextRequest() -> VNRecognizeTextRequest {
-        var request = VNRecognizeTextRequest()
+        let request = VNRecognizeTextRequest()
         request.recognitionLevel = .accurate
         request.usesLanguageCorrection = true
         request.recognitionLanguages = ["ja-JP"]

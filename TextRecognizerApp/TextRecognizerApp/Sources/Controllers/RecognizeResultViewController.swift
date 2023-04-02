@@ -13,7 +13,7 @@ final class RecognizeResultViewController: UIViewController {
     private(set) var presenter: RecognitionResultViewPresenter!
     
     static func instantiate() -> RecognizeResultViewController {
-        guard let controller = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "RecognizeResultViewController") as? RecognizeResultViewController else {
+        guard let controller = UIStoryboard(name: "RecognizeResultView", bundle: nil).instantiateViewController(withIdentifier: "RecognizeResultViewController") as? RecognizeResultViewController else {
             fatalError("RecognizeResultViewController could not be found")
         }
         
@@ -60,10 +60,12 @@ extension RecognizeResultViewController: TextRecognizeResultView {
     
     func shouldShowNetworkErrorFeedback() {
         let networkErrorMessage = "ネットワークエラー"
+        resultTextView.text = networkErrorMessage
     }
     
     func shouldShowRecognitionFailFeedback() {
         let recognitionFailMessage = "テキスト認証に失敗しました"
+        resultTextView.text = recognitionFailMessage
     }
     
     

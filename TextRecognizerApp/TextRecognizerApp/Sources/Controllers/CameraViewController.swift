@@ -31,8 +31,16 @@ final class CameraViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
+        setUpScreen()
+        setUpPreviewLayer()
+        setUpSession()
     }
     
+    // 今回は、viewDidLayoutSubViewsを導入してみた
+    // SubViewのlayoutが変更された後に呼び出されるメソッドである
+    // このメソッドの呼び出される順番は、SubViewのlayoutを変更した後、追加のタスクを実行するのに最適な時点となる
+    // そのため、previewLayerのframeをpreviewViewのboundsに合わせるのにいい時点だと判断
+    // Viewがloadされた後、layoutを確立させる
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         previewLayer.frame = previewView.bounds
@@ -71,6 +79,8 @@ private extension CameraViewController {
     
     func setUpDismissButton() {
         let image = UIImage(systemName: "multiply")?.withRenderingMode(.alwaysOriginal)
+        guard let image = image else { return }
+        dismissButton.setImage(image, for: .normal)
         dismissButton.tintColor = UIColor.systemGray5
         //Buttonの設定したconstraintsより、imageが小さくなった場合、Buttonをsizeの大きさに合わせる方法
         dismissButton.contentVerticalAlignment = .fill
@@ -79,6 +89,7 @@ private extension CameraViewController {
     
     func setUpShootButton() {
         let image = UIImage(systemName: "camera.circle.fill")?.withRenderingMode(.alwaysOriginal)
+        guard let image = image else { return }
         shootButton.setImage(image, for: .normal)
         shootButton.contentVerticalAlignment = .fill
         shootButton.contentHorizontalAlignment = .fill

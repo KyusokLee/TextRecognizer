@@ -25,12 +25,6 @@ private extension ViewController {
     }
     
     func setUpScreen() {
-//        let image = UIImage(systemName: "camera.fill")?
-//            .withTintColor(
-//                UIColor.systemBlue.withAlphaComponent(0.7),
-//                renderingMode: .alwaysOriginal
-//            )
-//        cameraButton.setImage(image, for: .normal)
         setUpNavigationController()
         setUpTitleLabel()
         setUpCameraButton()
