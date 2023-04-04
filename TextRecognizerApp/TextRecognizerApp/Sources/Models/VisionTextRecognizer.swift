@@ -29,15 +29,15 @@ struct VisionTextRecognizer: VisionTextRecognizerProtocol {
                 guard let candidates = observation.topCandidates(maximumCandidates).first else {
                     continue
                 }
-                print(candidates.string)
                 texts.append(candidates.string)
             }
             completion(texts, nil)
         }
         
         // MARK: - 日本語が正しく表示されなかったエラーはrecognitionLanguagesメソッドで日本語に設定するタイミングが原因だった
-        // テキスト認証 -> その後、テキストから日本語を検出する順番?のイメージ
-        request.recognitionLanguages = ["ja-JP"]
+        // 調べたところ、テキスト認証 -> その後、テキストから日本語（以外の言語も）を検出する順番?のイメージ
+        // recognitionLevelはaccurateがデフィートなので、別途の設定は不要
+        request.recognitionLanguages = ["ja-JP", "ko-KR", "en-US"]
         let requestHandler = VNImageRequestHandler(ciImage: ciImage, options: [:])
         // ここで、imageの処理を進める感じ
         // 画像に対しての解析リクエストを処理するためのオブジェクト

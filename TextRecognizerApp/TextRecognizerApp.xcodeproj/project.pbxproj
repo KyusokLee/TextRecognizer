@@ -21,6 +21,7 @@
 		9437528429D6E7FF00213CDE /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9437528329D6E7FF00213CDE /* CameraViewController.swift */; };
 		9437528629D6F95400213CDE /* RecognizeResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9437528529D6F95400213CDE /* RecognizeResultViewController.swift */; };
 		9437528829D6F96400213CDE /* RecognizeResultView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9437528729D6F96400213CDE /* RecognizeResultView.storyboard */; };
+		948C184329DC751900C4C00E /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948C184229DC751900C4C00E /* LoadingView.swift */; };
 		94EC8BD129D819D900A5ACDD /* VisionTextRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EC8BD029D819D900A5ACDD /* VisionTextRecognizer.swift */; };
 		94EC8BD429D8213E00A5ACDD /* RecognitionResultViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EC8BD329D8213E00A5ACDD /* RecognitionResultViewPresenter.swift */; };
 /* End PBXBuildFile section */
@@ -61,6 +62,7 @@
 		9437528329D6E7FF00213CDE /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		9437528529D6F95400213CDE /* RecognizeResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizeResultViewController.swift; sourceTree = "<group>"; };
 		9437528729D6F96400213CDE /* RecognizeResultView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecognizeResultView.storyboard; sourceTree = "<group>"; };
+		948C184229DC751900C4C00E /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		94EC8BD029D819D900A5ACDD /* VisionTextRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionTextRecognizer.swift; sourceTree = "<group>"; };
 		94EC8BD329D8213E00A5ACDD /* RecognitionResultViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionResultViewPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -139,6 +141,7 @@
 		9437527A29D6E5ED00213CDE /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				948C184129DC74FD00C4C00E /* Views */,
 				94EC8BD229D8212300A5ACDD /* Presenters */,
 				94EC8BCF29D819C800A5ACDD /* Models */,
 				9437527C29D6E5FA00213CDE /* Apps */,
@@ -186,6 +189,14 @@
 				9437528729D6F96400213CDE /* RecognizeResultView.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		948C184129DC74FD00C4C00E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				948C184229DC751900C4C00E /* LoadingView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		94EC8BCF29D819C800A5ACDD /* Models */ = {
@@ -345,6 +356,7 @@
 				9437524829D6E5E400213CDE /* AppDelegate.swift in Sources */,
 				9437524A29D6E5E400213CDE /* SceneDelegate.swift in Sources */,
 				94EC8BD129D819D900A5ACDD /* VisionTextRecognizer.swift in Sources */,
+				948C184329DC751900C4C00E /* LoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
