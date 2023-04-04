@@ -35,14 +35,12 @@ private extension ViewController {
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .systemBackground
         appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
-            
+        
         self.navigationItem.backButtonTitle = "Back"
-//        self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationController?.navigationBar.standardAppearance = appearance
         self.navigationController?.navigationBar.scrollEdgeAppearance = appearance
         self.navigationController?.navigationBar.compactAppearance = appearance
         self.navigationController?.navigationBar.compactScrollEdgeAppearance = appearance
-        
         self.navigationController?.navigationBar.prefersLargeTitles = false
         self.navigationItem.title = "Home View"
     }
@@ -66,7 +64,7 @@ private extension ViewController {
         titleLabel.adjustsFontSizeToFitWidth = true
         // font sizeの最小値を設定しないと、無限に縮小されてします。（defaultが0であるため）
         titleLabel.minimumScaleFactor = 0.5
-        titleLabel.font = .systemFont(ofSize: 23, weight: .bold)
+        titleLabel.font = .systemFont(ofSize: 19, weight: .bold)
         titleLabel.text = "カメラでテキスト\n認証を行いましょう！"
     }
     

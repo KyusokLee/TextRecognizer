@@ -7,6 +7,7 @@
 
 import UIKit
 
+// TODO: - テキストの認識まで時間がかかるので、ActivityIndicatorでLoading中であることをユーザー知らせる
 final class RecognizeResultViewController: UIViewController {
     
     @IBOutlet weak var resultTextView: UITextView!
@@ -43,6 +44,7 @@ private extension RecognizeResultViewController {
     }
     
     func setUpScreen() {
+        resultTextView.text = ""
         resultTextView.backgroundColor = UIColor.systemGreen.withAlphaComponent(0.3)
     }
     
@@ -61,11 +63,6 @@ extension RecognizeResultViewController: TextRecognizeResultView {
         // textViewに反映させる
         let joinedString = results.joined(separator: "\n")
         resultTextView.text = joinedString
-    }
-    
-    func shouldShowNetworkErrorFeedback() {
-        let networkErrorMessage = "ネットワークエラー"
-        resultTextView.text = networkErrorMessage
     }
     
     func shouldShowRecognitionFailFeedback() {
