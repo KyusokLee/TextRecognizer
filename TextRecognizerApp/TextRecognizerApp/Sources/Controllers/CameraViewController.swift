@@ -34,6 +34,7 @@ final class CameraViewController: UIViewController {
         setUpScreen()
         setUpPreviewLayer()
         setUpSession()
+        addPinchGesture()
     }
     
     // 今回は、viewDidLayoutSubViewsを導入してみた
@@ -55,6 +56,7 @@ final class CameraViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         stopCapture()
+        resetZoomScale()
     }
 }
 
@@ -97,6 +99,58 @@ private extension CameraViewController {
         shootButton.tintColor = color
     }
     
+    // camera Preview viewに拡大、縮小の機能を追加
+    private func addPinchGesture() {
+        let pinch = UIPinchGestureRecognizer(target: self, action: #selector(pinchToCameraZoom))
+        previewView.addGestureRecognizer(pinch)
+    }
+        
+    @objc func pinchToCameraZoom(_ sender: UIPinchGestureRecognizer) {
+        guard let captureDevice = AVCaptureDevice.default(for: .video) else {
+            fatalError("There is no available capture device.")
+        }
+        
+        var initialScale = captureDevice.videoZoomFactor
+        let minAvailableZoomScale = 1.0
+        let maxAvailableZoomScale = captureDevice.maxAvailableVideoZoomFactor
+        
+        do {
+            try captureDevice.lockForConfiguration()
+            if (sender.state == UIPinchGestureRecognizer.State.began) {
+                initialScale = captureDevice.videoZoomFactor
+            } else {
+                if (initialScale * (sender.scale) < minAvailableZoomScale) {
+                    captureDevice.videoZoomFactor = minAvailableZoomScale
+                } else if (initialScale * (sender.scale) > maxAvailableZoomScale) {
+                    captureDevice.videoZoomFactor = maxAvailableZoomScale
+                } else {
+                    captureDevice.videoZoomFactor = initialScale * (sender.scale)
+                }
+            }
+            sender.scale = 1.0
+            captureDevice.unlockForConfiguration()
+        } catch let error {
+            print("Error: \(error.localizedDescription)")
+            return
+        }
+    }
+    
+    // ViewがDisppearされるとき、Zoom ScaleをDefaultに戻す間数
+    private func resetZoomScale() {
+        guard let captureDevice = AVCaptureDevice.default(for: .video) else {
+            fatalError("There is no available capture device.")
+        }
+        
+        do {
+            try captureDevice.lockForConfiguration()
+            // videoZoomFactorを1.0にresetする
+            captureDevice.videoZoomFactor = 1.0
+            captureDevice.unlockForConfiguration()
+        } catch let error {
+            print("Error: \(error.localizedDescription)")
+        }
+    }
+    
     func startCapture() {
         // セッションをスタート
         guard !captureSession.isRunning else {
@@ -127,8 +181,8 @@ private extension CameraViewController {
     
     // セッションの確立
     func setUpSession() {
-        guard let videoDevice = AVCaptureDevice.default(for: .video),
-            let deviceInput = try? AVCaptureDeviceInput(device: videoDevice),
+        guard let captureDevice = AVCaptureDevice.default(for: .video),
+            let deviceInput = try? AVCaptureDeviceInput(device: captureDevice),
             captureSession.canAddInput(deviceInput),
             captureSession.canAddOutput(photoOutput) else {
                 fatalError("カメラのセットアップに失敗しました")
